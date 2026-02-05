@@ -1,62 +1,61 @@
-= Template and InstanceType Management
+= 템플릿 및 InstanceType 관리
 
-== Introduction
+== 소개
 
-Pre-configured Red Hat virtual machine templates are listed under *Virtualization* on the *Templates* page. These templates are available for different versions of Red Hat Enterprise Linux, Fedora, CentOS, Microsoft Windows Desktop, and Microsoft Windows Server editions. Each Red Hat associated virtual machine template is preconfigured with an operating system image (boot source), the default settings for the operating system, the flavor (CPU and memory), and the workload type (server). The templates for other operating systems do not include OS images, but are preconfigured as recommended for their operating system. 
+사전 구성된 Red Hat 가상 머신 템플릿은 `가상화` 항목의 `템플릿` 페이지에 나열되어 있습니다. 이러한 템플릿은 Red Hat Enterprise Linux, Fedora, CentOS, Microsoft Windows Desktop 및 Microsoft Windows Server의 다양한 버전에 사용할 수 있습니다. 각 Red Hat 관련 가상 머신 템플릿에는 운영 체제 이미지(부팅 소스), 운영 체제의 기본 설정, 종류(CPU 및 메모리), 워크로드 유형(서버)이 사전 구성되어 있습니다. 다른 운영 체제용 템플릿에는 OS 이미지가 포함되어 있지 않지만 해당 운영 체제에 권장되는 설정들이 사전 구성되어 있습니다.
 
-The *Templates* page displays four types of virtual machine templates:
+*템플릿* 페이지에는 네 가지 유형의 가상 머신 템플릿이 표시됩니다:
 
-* *Red Hat Supported* templates are fully supported by Red Hat.
-* *User Supported* templates are *Red Hat Supported* templates that were cloned and customized by users.
-* *Red Hat Provided* templates have limited support from Red Hat.
-* *User Provided* templates are *Red Hat Provided* templates that were cloned and customized by users.
+* *Red Hat Supported* 템플릿은 Red Hat에서 완벽하게 지원합니다.
+* *User Supported* 템플릿은 사용자가 복제하고 사용자 정의한 *Red Hat Supported* 템플릿입니다.
+* *Red Hat Provided* 템플릿은 Red Hat에서 제한적으로 지원합니다.
+* *User Provided* 템플릿은 사용자가 복제하고 사용자 정의한 *Red Hat Provided* 템플릿입니다.
 
 [[prepare_templates_lab]]
-== Prepare for the lab
+== 실습 준비하기
 
-. The tasks that we are about to perform will require us to provision a few additional VMs. In preparation we are going to ask that you shut down the existing *fedora01* and *fedora02* virtual machines to ensure that your shared environment has enough resources to complete the lab.
+. 곧 수행할 작업에는 몇 개의 추가 가상 머신(VM)을 프로비저닝해야 합니다. 준비 단계로, 공유 환경에 실습을 완료하는 데 필요한 충분한 리소스를 확보하기 위해 기존의 *fedora01* 및 *fedora02* 가상 머신을 종료해 주시기 바랍니다.
+. 왼쪽 메뉴에서 `Virtualization` 관점으로 이동한 다음 `VirtualMachines` 를 클릭합니다.
+. VM 워크로드를 호스팅하는 액세스 권한이 있는 각 프로젝트가 가운데 열에 트리 구조로 나열됩니다. (여기서 *vmimported-{user}* 및 *vmexamples-{user}* 프로젝트를 확장하여 가상 머신 상태를 확인해야 합니다.)
+. VM 중 상태가 *Running* 으로 표시되는 VM이 ​​있으면 가운데 트리 열에서 해당 VM을 체크하고 `동작` 드롭다운 메뉴에서 `중지` 를 선택하여 VM들을 중지합니다.
 
-. Navigate to *Virtualization* perspective in the left-side menu and then click on *Virtualmachines*.
-. Each project that you have access to that is hosting VM workloads will be listed in the center column treeview. (At a minimum you should expand projects *vmimported-{user}* and *vmexamples-{user}* to check virtual machine status.)
-. If any VMs are showing a status of *Running*, highlight the VM in the center tree column, and select the *Stop* button or option from the *Actions* dropdown menu..
-
-Now all VMs should be in *Stopped* state.
+이제 모든 가상 머신이 *Stopped* 상태가 되어야 합니다. 
 
 image::2025_spring/module-07-tempinst/00_VMs_Stopped.png[link=self, window=blank, width=100%]
 
 [[clone_customize_template]]
-== Clone and Customize a Template
+== 템플릿 복제 및 수정
 
-By default the pre-configured templates provided by Red Hat OpenShift Virtualization cannot be customized. However you can clone a template and make adjustments to it for your particular workload in order to make it easier to request specific types of virtual machines for specific workloads. In this section of the lab we are going to do just this, by creating a template that will provide a preconfigured database server on demand for our end users.
+기본적으로 Red Hat OpenShift Virtualization에서 제공하는 사전 구성된 템플릿은 사용자 정의할 수 없습니다. 하지만 템플릿을 복제하여 특정 워크로드에 맞게 조정하면 특정 워크로드에 필요한 특정 유형의 가상 머신을 더 쉽게 요청할 수 있습니다. 이 실습 섹션에서는 최종 사용자가 필요에 따라 사전 구성된 데이터베이스 서버를 사용할 수 있도록 템플릿을 생성하는 방법을 살펴보겠습니다.
 
-. To begin, click on *Templates* in the left-side menu, and  select *openshift* for your project. You may need to toggle the *Show default projects* button in order for the *openshift* project to appear.
+. 먼저 왼쪽 메뉴에서 `템플릿` 을 클릭하고 프로젝트로 *openshift* 를 선택하세요. *openshift* 프로젝트가 표시되도록 *기본 프로젝트 표시* 버튼을 켜야 할 수도 있습니다.
 +
 image::2025_spring/module-07-tempinst/01_Project_Toggle.png[link=self, window=blank, width=100%]
 +
 image::2025_spring/module-07-tempinst/01_Template_List.png[link=self, window=blank, width=100%]
 
-. In the search bar type in *centos9* and press Enter. In the list of templates that appear find the template for *centos-stream9-server-small*.
+. 검색창에 *centos9* 를 입력하고 Enter 키를 누르세요. 나타나는 템플릿 목록에서 *centos-stream9-server-small* 템플릿을 찾으세요.
 +
 image::2025_spring/module-07-tempinst/02_Search_Centos9.png[link=self, window=blank, width=100%]
 
-. Click on the template name for *centos-stream9-server-small*, you will be prompted with a message that default templates cannot be edited and asked if you'd like to clone. Click the *Create a new custom Template* option.
+. *centos-stream9-server-small* 템플릿 이름을 클릭하면 기본 템플릿은 편집할 수 없다는 메시지와 함께 복제할지 묻는 메시지가 나타납니다. `새 사용자 지정 템플릿 만들기` 옵션을 클릭하세요.
 +
 image::2025_spring/module-07-tempinst/03_Create_Custom_Template.png[link=self, window=blank, width=100%]
 
-. A new menu called *Clone template* will appear, fill in the the following values, and when finished click on the *Clone* button.
+. *템플릿 복제* 라는 팝업 창이 나타납니다. 다음 값을 입력하고 완료되면 `복제` 버튼을 클릭하십시오.
 +
-* *Template name:* centos-stream9-server-db-small
-* *Template project:* vmexamples-{user}
-* *Template display name:* CentOS Stream 9 VM - Database Template Small
-* *Template provider:* Roadshow {user}
+* *템플릿 이름:* centos-stream9-server-db-small
+* *템플릿 프로젝트:* vmexamples-{user}
+* *템플릿 표시 이름:* CentOS Stream 9 VM - Database Template Small
+* *템플릿 제공자:* Roadshow {user}
 +
 image::2025_spring/module-07-tempinst/04_Clone_Template_Options.png[link=self, window=blank, width=100%]
 
-. This will take you to the *Details* page for the template where we will be able to customize some options. Start by finding the CPU and Memory near the bottom of the page, and click on the pencil icon to edit it.
+. 이렇게 하면 템플릿의 `세부 정보` 페이지로 이동하며, 몇 가지 옵션을 사용자 지정할 수 있습니다. 페이지 하단에서 CPU와 메모리 항목을 찾아 연필 아이콘을 클릭하여 편집하세요.
 +
 image::2025_spring/module-07-tempinst/05_Clone_Details.png[link=self, window=blank, width=100%]
 
-. A new window will pop out where you can edit the amount of CPU and Memory. For our custom template set the value of CPUs to 2, and Memory to 4 GiB, and click the *Save* button.
+. CPU와 메모리 용량을 편집할 수 있는 새 창이 나타납니다. 사용자 지정 템플릿의 경우 CPU 값을 2로, 메모리 값을 4GiB로 설정한 다음 `저장` 버튼을 클릭하세요.
 +
 image::2025_spring/module-07-tempinst/06_Edit_CPU_Mem.png[link=self, window=blank, width=100%]
 
