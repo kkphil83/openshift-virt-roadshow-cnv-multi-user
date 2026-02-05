@@ -16,10 +16,10 @@
 ** xref:module-02-mtv.adoc#interactive_demos[고급 기능을 알아보기 위한 인터렉티브 데모]
 ** xref:module-02-mtv.adoc#migration_wrapup[마이그레이션 마무리]
 
-* xref:module-04-storage.adoc[Storage Management]
-** xref:module-04-storage.adoc#examine_pvc[Examine the PVC for a VM]
-** xref:module-04-storage.adoc#managing_snapshots[Managing Snapshots]
-** xref:module-04-storage.adoc#clone_vm[Clone a Virtual Machine]
+* xref:module-04-storage.adoc[스토리지 관리]
+** xref:module-04-storage.adoc#examine_pvc[VM의 PVC 살펴보기]
+** xref:module-04-storage.adoc#managing_snapshots[스냅샷 관리]
+** xref:module-04-storage.adoc#clone_vm[가상 머신 복제]
 
 * xref:module-05-bcdr.adoc[Backup and Recovery for Virtual Machines]
 ** xref:module-05-bcdr.adoc#review_operator[Review the OADP Operator]

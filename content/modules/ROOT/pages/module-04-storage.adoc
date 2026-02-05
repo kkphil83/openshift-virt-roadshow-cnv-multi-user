@@ -135,28 +135,28 @@ image::2025_spring/module-04-storage/16_VM_Running.png[link=self, window=blank, 
 +
 image::2025_spring/module-04-storage/17_Overview_Actions_Clone.png[link=self, window=blank, width=100%]
 
-. Press *Clone* from the *Actions* menu, and a dialog will open. Name the cloned VM *fedora02*, and ensure that the checkbox to *Start VirtualMachine on clone* remains unchecked, then click *Clone*.
+. *동작* 메뉴에서 `복제` 를 누르면 대화 상자가 열립니다. 복제된 VM의 이름을 *fedora02* 로 지정하고 `VirtualMachine을 생성 후 시작` 확인란이 선택 해제되어 있는지 확인한 다음 `복제` 를 클릭합니다.
 +
 image::2025_spring/module-04-storage/18_VM_Clone_Dialog.png[link=self, window=blank, width=100%]
 
-. A new VM is created, the disks are cloned and automatically the portal will redirect you to the new VM, and you can see the *Created* time as very recently.
+. 새로운 VM이 생성되고 디스크가 복제되면 포털에서 자동으로 새 VM으로 리디렉션되며, *작성* 시간이 매우 최근으로 표시되는 것을 확인할 수 있습니다.
 +
 image::2025_spring/module-04-storage/19_VM_Cloned.png[link=self, window=blank, width=100%]
 +
-IMPORTANT: The cloned VM will have the same identity as the source VM, which may cause conflicts with applications and other clients interacting with the VM. Use caution when cloning a VM connected to an external network or in the same project.
+IMPORTANT: 복제된 VM은 원본 VM과 동일한 ID를 가지게 되므로 VM과 상호 작용하는 애플리케이션 및 기타 클라이언트와 충돌이 발생할 수 있습니다. 외부 네트워크에 연결된 VM이나 동일 프로젝트 내의 VM을 복제할 때는 주의해야 합니다.
 
-. Click on the *YAML* menu at the top of the screen, you will see that the name of the VM is *fedora02*, however there are some labels that remain from the *fedora01* source VM that will need to be manually updated.
+. 화면 상단의 `YAML` 메뉴를 클릭하면 VM 이름이 *fedora02* 인 것을 확인할 수 있습니다. 하지만 *fedora01* 원본 VM에서 남은 일부 레이블은 수동으로 업데이트해야 합니다.
 +
 image::2025_spring/module-04-storage/20_Cloned_VM_YAML.png[link=self, window=blank, width=100%]
 
-. Modify the the *app* and *kubevirt.io/domain* values in the YAML so that they are set to *fedora02* then click the *Save* button at the bottom, you will prompted that *fedora02* has been updated to a new version. Doing this now will allow us to avoid issues working with this VM in later modules.
+. YAML 파일에서 *app* 과 *kubevirt.io/domain* 값을 *fedora02* 로 변경한 다음 하단의 `저장` 버튼을 클릭하세요. *fedora02* 가 새 버전으로 업데이트되었다는 메시지가 표시됩니다. 이렇게 하면 이후 모듈에서 이 VM을 사용할 때 발생할 수 있는 문제를 방지할 수 있습니다.
 +
 image::2025_spring/module-04-storage/21_Cloned_VM_YAML_Saved.png[link=self, window=blank, width=100%]
 
-. When you have completed the modifications to the virtual machine's YAML go ahead and start it up so that you have both *fedora01* and *fedora02* running.
+. 가상 머신의 YAML 파일 수정이 완료되면 가상 머신을 시작하여 *fedora01* 과 *fedora02* 가 모두 실행되도록 하십시오.
 +
 image::2025_spring/module-04-storage/22_Fedora02_Running.png[link=self, window=blank, width=100%]
 
-== Summary
+== 요약
 
-In this section of our lab we explored the storage options that are available when managing virtual machines. We also performed several VM management functions that are dependant on the storage provisioned for the virtual machine, including taking snapshots of VMs to peform basic restores, and cloning of VMs to be used in other projects or to help streamline future development.
+이번 실습에서는 가상 머신 관리 시 사용할 수 있는 스토리지 옵션을 살펴보았습니다. 또한 가상 머신에 할당된 스토리지에 따라 필요한 여러 VM 관리 기능, 예를 들어 기본 복원을 위한 VM 스냅샷 생성, 다른 프로젝트에서 사용하거나 향후 개발을 간소화하기 위한 VM 복제 등을 수행했습니다.
