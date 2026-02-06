@@ -102,7 +102,7 @@ VMware vSphere 및 그 아넹 있는 VM 확인을 마쳤다면 해당 브라우�
 
 [NOTE]
 ====
-**Migration Toolkit for Virtualization (MTV)**는 OpenShift Virtualization과는 별개의 도구이며, *Virtualization* 관점에서는 접근할 수 없습니다.
+**Migration Toolkit for Virtualization (MTV)**는 OpenShift Virtualization과는 별개의 도구이며, *가상화* 관점에서는 접근할 수 없습니다.
 ====
 
 . 왼쪽 메뉴에서 **가상화** 클릭 후 드롭다운에서 **관리자**를 선택합니다.
@@ -136,7 +136,7 @@ image::2025_spring/module-02-mtv/07_Create_VMWARE_Plan.png[link=self, window=bla
 +
 image::2025_spring/module-02-mtv/08_VMware_Source_Provider.png[link=self, window=blank, width=100%]
 
-. 페이지가 업데이트되면 사용자 계정 **{user}**이 액세스 권한을 가진 환경 내 가상 머신 목록이 표시됩니다 .
+. 페이지가 업데이트되면 사용자 계정 **{user}**이 액세스 권한을 가진 환경 내 가상 머신 목록이 표시됩니다.
 +
 image::2025_spring/module-02-mtv/09_VM_Search.png[link=self, window=blank, width=100%]
 

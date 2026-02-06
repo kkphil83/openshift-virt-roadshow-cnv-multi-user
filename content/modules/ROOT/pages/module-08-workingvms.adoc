@@ -7,8 +7,6 @@
 [[service_route]]
 == 서비스/라우트(Service/Route)를 사용하여 애플리케이션 노출
 
-By default, virtual machines are connected to the SDN, which is a convenient and easy way to give them access to the rest of the network. However, it can be challenging for the virtual machines, and other pods in the OpenShift cluster, to find and connect to the virtualized applications. To solve this, we will use a *Service* to balance connections across the two Windows-based web servers, and create a DNS entry for each service discovery, then create a *Route* to allow external clients to access the application hosted within the virtual machines.
-
 기본적으로 가상 머신은 SDN에 연결되어 있어 네트워크의 다른 부분에 편리하게 접근할 수 있습니다. 하지만 OpenShift 클러스터 내의 가상 머신 및 다른 파드들이 가상화된 애플리케이션을 찾아 연결하는 데 어려움을 겪을 수 있습니다. 이 문제를 해결하기 위해 두 개의 Windows 기반 웹 서버에 걸쳐 연결을 분산하는 **서비스**를 사용하고, 각 서비스에 대한 DNS 항목을 생성한 다음, 외부 클라이언트가 가상 머신에 호스팅된 애플리케이션에 접근할 수 있도록 **라우트**를 생성합니다.
 
 IMPORTANT: 
@@ -47,7 +45,7 @@ IMPORTANT: 아래 스크린샷처럼 들여쓰기를 정확하게 맞춰야 합�
 +
 image::2025_spring/module-08-workingvms/12_Imported_VMs_YAML.png[link=self, window=blank, width=100%]
 
-. VM *winweb02-{user}*에 대해서도 동일한 과정을 **반복**합니다 .
+. VM *winweb02-{user}*에 대해서도 동일한 과정을 **반복**합니다.
 . 구성 변경 후  *winweb01-{user}* 및 *winweb02-{user}* 가상 머신을 모두 재부팅해야 합니다.
 +
 NOTE: 각 가상 머신의 콘솔 탭에 접속하여 가상 머신이 제대로 작동하는지 확인하세요.
@@ -76,7 +74,7 @@ spec:
     targetPort: 80
 ----
 +
-IMPORTANT: 서비스(Service) YAML에서 가상 머신의 네임스페이스가 올바른지 확인하세요. (예를 들어 미리 가져오기가 완료되어 있던 가상 머신을 사용 중이시라면 네임스페이스는 위에 적힌 **vmexamples-{user}**가 아니라 **vmimported-{user}**로 수정하셔야 합니다.)
+IMPORTANT: 서비스(Service) YAML에서 가상 머신의 네임스페이스가 올바른지 확인하세요. (예를 들어 가져오기가 미리 완료되어 있던 가상 머신을 사용 중이시라면 네임스페이스는 위에 적힌 **vmexamples-{user}**가 아니라 **vmimported-{user}**로 수정하셔야 합니다.)
 +
 image::2025_spring/module-08-workingvms/14_Service_YAML.png[link=self, window=blank, width=100%]
 
@@ -93,18 +91,18 @@ image::2025_spring/module-08-workingvms/16_Imported_VMs_Pods.png[link=self, wind
 
 이제 Windows IIS 서버는 OpenShift 클러스터 내부에서 접근 가능합니다. 다른 가상 머신은 서비스 이름과 네임스페이스를 조합하여 생성되는 DNS 이름 **webapp.vmexamples-{user}**를 사용하여 해당 서버에 접근할 수 있습니다. 하지만 이러한 웹 서버는 애플리케이션의 프런트엔드 역할을 하므로 외부에서도 접근 가능하도록 해야 합니다. 이를 위해 **라우트**를 사용하여 공개적으로 노출할 것입니다.
 
-. 왼쪽 탐색 메뉴에서 *네트워킹* 메뉴 아래쪽, *경로* 옵션을 클릭합니다. 화면 중앙에 있는 *경로 생성* 버튼을 클릭합니다.
+. 왼쪽 탐색 메뉴에서 *네트워킹* 메뉴 아래쪽, *Routes* 옵션을 클릭합니다. 화면 중앙에 있는 *Route 만들기* 버튼을 클릭합니다.
 +
 image::2025_spring/module-08-workingvms/17_Route_Navigation.png[link=self, window=blank, width=100%]
 
 . 아래 정보를 사용하여 양식을 작성하고, 아래로 스크롤하여 완료되면 '생성'을 클릭하세요.
 +
-.. *Name*: *route-webapp*
-.. *Service*: *webapp*
-.. *Target port*: *80 -> 80 (TCP)*
-.. *Secure Route*: *Enabled*
-.. *TLS termination*: *Edge*
-.. *Insecure traffic*: *Redirect*
+.. *이*: *route-webapp*
+.. *서비스*: *webapp*
+.. *대상 포트*: *80 -> 80 (TCP)*
+.. *보안*: *안전한 경로(체크)*
+.. *TLS 종료*: *Edge*
+.. *안전하지 않은 트래픽*: *리디렉*
 +
 image::2025_spring/module-08-workingvms/18_Create_Route.png[link=self, window=blank, width=100%]
 
@@ -117,7 +115,7 @@ image::2025_spring/module-08-workingvms/19_Route_Access.png[link=self, window=bl
 image::2025_spring/module-08-workingvms/20_WebApp_Error.png[link=self, window=blank, width=100%]
 +
 NOTE: 연결 문제를 해결하려면, 웹 서버에서 데이터베이스 가상머신에 연결할 수 있도록 데이터베이스 가상 머신에 대한 서비스도 생성해야 합니다.
-. 다시 한번, *네트워킹* → **서비스**로 이동하여 **서비스 생성**을 누릅니다. YAML 파일을 다음 정의로 바꿉니다.
+. 다시 한번, *네트워킹* → **Services**로 이동하여 **서비스 생성**을 누릅니다. YAML 파일을 다음 정의로 바꿉니다.
 +
 [source,yaml,role=execute,subs="attributes"]
 ----
