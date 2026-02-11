@@ -91,7 +91,7 @@ IMPORTANT: 네트워크 연결 정의를 생성할 때, 현재 vmexamples-{user}
 * **네트워크 유형**: Linux bridge
 * **브리지 이름**: br-flat
 +
-image::2025_summer/module-09-networking/07_NetworkAttachDefinition_Create_Form.png[link=self, window=blank, width=100%]
+image::2025_spring/module-09-networking/07_NetworkAttachDefinition_Create_Form.png[link=self, window=blank, width=100%]
 +
 
 NOTE: 위 양식에는 **VLAN 태그 번호**를 입력하는 칸이 있습니다. 이 번호는 VLAN 태그가 할당된 네트워크에 연결할 때 사용됩니다. 이 실습에서는 태그가 지정되지 않은 네트워크를 사용하므로 VLAN 번호를 입력할 필요가 없습니다.
@@ -100,7 +100,7 @@ NOTE: 호스트의 단일 Linux 브리지에 여러 개의 VLAN을 연결할 수
 
 . 네트워크 연결 정의의 세부 정보를 살펴보세요. 이 정의는 *vmexamples-{user}* 프로젝트에서 생성되었으므로 다른 프로젝트에서는 사용할 수 없습니다.
 +
-image::2025_summer/module-09-networking/08_NetworkAttachDefinition_Created.png[link=self, window=blank, width=100%]
+image::2025_spring/module-09-networking/08_NetworkAttachDefinition_Created.png[link=self, window=blank, width=100%]
 
 [[attach]]
 == 가상 머신을 네트워크에 연결
