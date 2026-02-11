@@ -30,17 +30,17 @@ NOTE: 이 목록은 지원되는 백업 및 복구 솔루션을 제공하는 모
 
 . 다시 관리자 화면으로 이동한 다음 왼쪽 메뉴에서 `에코시스템` 을 클릭하고 `설치된 Operator` 를 클릭합니다. 프로젝트 *oadp-{user}* 가 선택되어 있는지 확인하십시오.
 +
-image::2025_summer/module-05-bcdr/00_Left_Menu.png[link=self, window=blank, width=100%]
+image::2025_spring/module-05-bcdr/00_Left_Menu.png[link=self, window=blank, width=100%]
 
 . 해당 Operator를 클릭하면 상세 정보를 볼 수 있습니다.
 
 . *제공되는 API* 를 검토하세요. 이 모듈에서는 `백업` 및 `복원` 기능을 사용합니다.
 +
-image::2025_summer/module-05-bcdr/01_Overview.png[link=self, window=blank, width=100%]
+image::2025_spring/module-05-bcdr/01_Overview.png[link=self, window=blank, width=100%]
 
 . 상단의 가로 스크롤 막대를 사용하여 `DataProtectionApplication` 탭으로 이동하십시오. 이 객체는 배포된 OADP 인스턴스의 구성을 나타냅니다.
 +
-image::2025_summer/module-05-bcdr/02_DPA.png[link=self, window=blank, width=100%]
+image::2025_spring/module-05-bcdr/02_DPA.png[link=self, window=blank, width=100%]
 
 . *oadp-dpa* 를 클릭하여 `DataProtectionApplication` 의 세부 정보를 확인한 다음 상단의 `YAML` 버튼을 클릭하여 구성 방법을 확인하세요.
 +
@@ -61,7 +61,7 @@ NOTE: 이전 섹션을 완료하지 않았거나 *fedora02* VM이 없는 경우,
 
 . `Backup` 탭을 클릭하고 `Backup 만들기` 버튼을 누르세요.
 +
-image::2025_summer/module-05-bcdr/04_Backup_Tab.png[link=self, window=blank, width=100%]
+image::2025_spring/module-05-bcdr/04_Backup_Tab.png[link=self, window=blank, width=100%]
 
 . `YAML보기` 로 전환하고 기본 내용을 다음 내용으로 바꾸세요.
 +
@@ -100,7 +100,7 @@ image::2025_spring/module-05-bcdr/05_Create_Backup_YAML.png[link=self, window=bl
 
 . `상태` 열이 *Completed* 로 바뀔 때까지 기다리세요. 이는 가상 머신 백업이 성공적으로 완료되었음을 나타냅니다.
 +
-image::2025_summer/module-05-bcdr/06_Backup_Completed.png[link=self, window=blank, width=100%]
+image::2025_spring/module-05-bcdr/06_Backup_Completed.png[link=self, window=blank, width=100%]
 
 [[restore_backup]]
 == 백업에서 복원
@@ -117,7 +117,7 @@ image::2025_spring/module-05-bcdr/08_Delete_VM.png[link=self, window=blank, widt
 +
 image::2025_spring/module-05-bcdr/09_Confirm_Delete.png[link=self, window=blank, width=100%]
 
-. 가상 머신이 인벤토리에서 사라집니다.
+. *fedora02* 가상 머신이 인벤토리에서 사라집니다.
 +
 image::2025_spring/module-05-bcdr/10_Deleted_VM.png[link=self, window=blank, width=100%]
 
@@ -125,7 +125,7 @@ image::2025_spring/module-05-bcdr/10_Deleted_VM.png[link=self, window=blank, wid
 
 . 가로 탐색 모음을 사용하여 `Restore` 탭을 찾고 클릭한 다음, `Restore 만들기` 를 누릅니다.
 +
-image::2025_summer/module-05-bcdr/11_Restore_Tab.png[link=self, window=blank, width=100%]
+image::2025_spring/module-05-bcdr/11_Restore_Tab.png[link=self, window=blank, width=100%]
 
 . YAML 보기로 전환하고 내용을 아래 내용으로 바꾸세요:
 +
@@ -155,7 +155,7 @@ image::2025_spring/module-05-bcdr/12_Create_Restore_YAML.png[link=self, window=b
 
 . `상태` 열이 *Completed* 로 바뀔 때까지 기다리세요.
 +
-image::2025_summer/module-05-bcdr/13_Restore_Completed.png[link=self, window=blank, width=100%]
+image::2025_spring/module-05-bcdr/13_Restore_Completed.png[link=self, window=blank, width=100%]
 
 . `가상화` 메뉴로 돌아가서 아래 메뉴에서 `VirtualMachines` 을 클릭하고 *vmexamples-{user}* 프로젝트에 있는 *fedora02* 가상 머신이 복원되었는지 확인하세요. `작성` 항목에서 생성 시간이 얼마 전으로 표시되어 있을 것입니다.
 +
