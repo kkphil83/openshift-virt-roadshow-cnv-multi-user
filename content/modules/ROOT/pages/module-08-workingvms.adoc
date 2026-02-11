@@ -102,7 +102,7 @@ image::2025_spring/module-08-workingvms/17_Route_Navigation.png[link=self, windo
 .. *대상 포트*: *80 -> 80 (TCP)*
 .. *보안*: *안전한 경로(체크)*
 .. *TLS 종료*: *Edge*
-.. *안전하지 않은 트래픽*: *리디렉*
+.. *안전하지 않은 트래픽*: *리디렉션*
 +
 image::2025_spring/module-08-workingvms/18_Create_Route.png[link=self, window=blank, width=100%]
 
